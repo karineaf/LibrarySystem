@@ -1,14 +1,11 @@
-package com.company.librarysystem.infra.persistence.entity.mapper;
+package com.company.librarysystem.adapter.persistence.entity.mapper;
 
 import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.model.Book;
-import com.company.librarysystem.infra.persistence.entity.AuthorEntity;
-import com.company.librarysystem.infra.persistence.entity.BookEntity;
+import com.company.librarysystem.adapter.persistence.entity.AuthorEntity;
 import lombok.NonNull;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;

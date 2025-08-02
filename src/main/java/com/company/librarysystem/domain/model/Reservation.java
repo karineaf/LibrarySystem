@@ -8,7 +8,7 @@ import lombok.NonNull;
 
 import java.time.LocalDate;
 
-import static com.company.librarysystem.domain.model.enums.ReservationStatus.ACTIVE;
+import static com.company.librarysystem.domain.model.enums.ReservationStatus.*;
 import static com.company.librarysystem.util.DateUtils.isValidRange;
 
 @Getter
@@ -37,6 +37,23 @@ public class Reservation {
 
     public boolean isActive() {
         return status == ACTIVE;
+    }
+
+    public void cancel() {
+        if (!isActive())
+            throw new IllegalStateException("Only active reservations can be cancelled");
+
+        this.status = CANCELLED;
+    }
+
+    public void finish() {
+        if (!isActive())
+            throw new IllegalStateException("Only active reservations can be finished");
+
+        if (endDate.isAfter(LocalDate.now())) {
+            throw new IllegalStateException("Cannot finish a reservation before it ends");
+        }
+        this.status = FINISHED;
     }
 
 }

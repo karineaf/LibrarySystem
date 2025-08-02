@@ -15,7 +15,7 @@ public class Review {
     private final Long id;
     private final Long userId;
     private final Book book;
-    private final int rating;
+    private final Integer rating;
     private final String comment;
     private final LocalDate createdAt;
 

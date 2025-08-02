@@ -1,10 +1,8 @@
-package com.company.librarysystem.infra.persistence.entity;
+package com.company.librarysystem.adapter.persistence.entity;
 
-import com.company.librarysystem.domain.model.Book;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
