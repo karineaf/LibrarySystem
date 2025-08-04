@@ -1,4 +1,4 @@
-package com.company.librarysystem.adapter.persistence.entity;
+package com.company.librarysystem.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,10 +1,10 @@
-package com.company.librarysystem.adapter.persistence.entity.mapper;
+package com.company.librarysystem.adapter.out.persistence.entity.mapper;
 
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;
-import com.company.librarysystem.adapter.persistence.entity.BookEntity;
+import com.company.librarysystem.adapter.out.persistence.entity.BookEntity;
 import lombok.NonNull;
 
 import java.util.Collections;

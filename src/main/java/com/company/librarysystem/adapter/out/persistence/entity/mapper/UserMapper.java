@@ -1,7 +1,7 @@
-package com.company.librarysystem.adapter.persistence.entity.mapper;
+package com.company.librarysystem.adapter.out.persistence.entity.mapper;
 
 import com.company.librarysystem.domain.model.User;
-import com.company.librarysystem.adapter.persistence.entity.UserEntity;
+import com.company.librarysystem.adapter.out.persistence.entity.UserEntity;
 import lombok.NonNull;
 
 public class UserMapper {

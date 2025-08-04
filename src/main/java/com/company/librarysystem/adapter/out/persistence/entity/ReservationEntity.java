@@ -1,4 +1,4 @@
-package com.company.librarysystem.adapter.persistence.entity;
+package com.company.librarysystem.adapter.out.persistence.entity;
 
 import com.company.librarysystem.domain.model.enums.ReservationStatus;
 import jakarta.persistence.*;

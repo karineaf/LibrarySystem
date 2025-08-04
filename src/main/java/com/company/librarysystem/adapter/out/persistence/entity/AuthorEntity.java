@@ -1,4 +1,4 @@
-package com.company.librarysystem.adapter.persistence.entity;
+package com.company.librarysystem.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,7 +26,7 @@ public class AuthorEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "author", cascade = {PERSIST, MERGE})
+    @ManyToMany(mappedBy = "authors", cascade = {PERSIST, MERGE})
     private List<BookEntity> books = new ArrayList<>();
 
     public void addBook(@NonNull BookEntity book) {

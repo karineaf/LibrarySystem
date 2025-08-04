@@ -1,8 +1,8 @@
-package com.company.librarysystem.adapter.persistence.entity.mapper;
+package com.company.librarysystem.adapter.out.persistence.entity.mapper;
 
 import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.model.Book;
-import com.company.librarysystem.adapter.persistence.entity.AuthorEntity;
+import com.company.librarysystem.adapter.out.persistence.entity.AuthorEntity;
 import lombok.NonNull;
 
 import java.util.List;

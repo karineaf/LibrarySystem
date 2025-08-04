@@ -1,6 +1,6 @@
-package com.company.librarysystem.adapter.persistence.entity.mapper;
+package com.company.librarysystem.adapter.out.persistence.entity.mapper;
 import com.company.librarysystem.domain.model.Review;
-import com.company.librarysystem.adapter.persistence.entity.ReviewEntity;
+import com.company.librarysystem.adapter.out.persistence.entity.ReviewEntity;
 import lombok.NonNull;
 
 public class ReviewMapper {
