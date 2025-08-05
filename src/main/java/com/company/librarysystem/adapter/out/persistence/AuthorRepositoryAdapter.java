@@ -1,23 +1,19 @@
 package com.company.librarysystem.adapter.out.persistence;
 
 import com.company.librarysystem.adapter.out.persistence.entity.AuthorEntity;
-import com.company.librarysystem.adapter.out.persistence.entity.BookEntity;
-import com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorMapper;
-import com.company.librarysystem.adapter.out.persistence.entity.mapper.BookMapper;
+import com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper;
 import com.company.librarysystem.adapter.out.persistence.repository.AuthorRepositoryJpa;
 import com.company.librarysystem.domain.model.Author;
-import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorMapper.toEntity;
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorMapper.toModel;
+import static com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper.toEntity;
+import static com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper.toModel;
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
@@ -33,7 +29,7 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
 
     @Override
     public Optional<Author> findById(Long id) {
-        return repository.findById(id).map(AuthorMapper::toModel);
+        return repository.findById(id).map(AuthorEntityMapper::toModel);
     }
 
     @Override
@@ -51,20 +47,20 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
 
     @Override
     public Optional<Author> findByName(String name) {
-        return repository.findByName(name).map(AuthorMapper::toModel);
+        return repository.findByName(name).map(AuthorEntityMapper::toModel);
     }
 
     @Override
     public List<Author> findByBookId(Long bookId) {
         return repository.findByBooks_Id(bookId).stream()
-                .map(AuthorMapper::toModel)
+                .map(AuthorEntityMapper::toModel)
                 .collect(toList());
     }
 
     @Override
     public List<Author> findByBookTitle(String bookTitle) {
         return repository.findByBooks_Title(bookTitle).stream()
-                .map(AuthorMapper::toModel)
+                .map(AuthorEntityMapper::toModel)
                 .collect(toList());
     }
 

@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BookMapper {
+public class BookEntityMapper {
 
     public static Book toModel(BookEntity entity) {
         if (entity == null) return null;
@@ -19,7 +19,7 @@ public class BookMapper {
         List<Author> authors = (entity.getAuthors() == null)
                 ? Collections.emptyList()
                 : entity.getAuthors().stream()
-                .map(AuthorMapper::toModel)
+                .map(AuthorEntityMapper::toModel)
                 .collect(Collectors.toList());
 
         return Book.builder()

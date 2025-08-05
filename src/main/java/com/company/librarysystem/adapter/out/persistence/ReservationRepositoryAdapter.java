@@ -1,7 +1,7 @@
 package com.company.librarysystem.adapter.out.persistence;
 
 import com.company.librarysystem.adapter.out.persistence.entity.ReservationEntity;
-import com.company.librarysystem.adapter.out.persistence.entity.mapper.ReservationMapper;
+import com.company.librarysystem.adapter.out.persistence.entity.mapper.ReservationEntityMapper;
 import com.company.librarysystem.adapter.out.persistence.repository.ReservationRepositoryJpa;
 import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.model.enums.ReservationStatus;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReservationMapper.*;
+import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReservationEntityMapper.*;
 
 @RequiredArgsConstructor
 public class ReservationRepositoryAdapter implements ReservationRepository {
@@ -27,7 +27,7 @@ public class ReservationRepositoryAdapter implements ReservationRepository {
     @Override
     public Optional<Reservation> findById(Long id) {
         return repository.findById(id)
-                .map(ReservationMapper::toModel);
+                .map(ReservationEntityMapper::toModel);
     }
 
     @Override
@@ -46,19 +46,19 @@ public class ReservationRepositoryAdapter implements ReservationRepository {
     @Override
     public Optional<Reservation> findByUserId(Long userId) {
         return repository.findByUserId(userId)
-                .map(ReservationMapper::toModel);
+                .map(ReservationEntityMapper::toModel);
     }
 
     @Override
     public Optional<Reservation> findByBookId(Long bookId) {
         return repository.findByBookId(bookId)
-                .map(ReservationMapper::toModel);
+                .map(ReservationEntityMapper::toModel);
     }
 
     @Override
     public Optional<Reservation> findByBookTitle(String bookTitle) {
         return repository.findByBook_Title(bookTitle)
-                .map(ReservationMapper::toModel);
+                .map(ReservationEntityMapper::toModel);
     }
 
     @Override

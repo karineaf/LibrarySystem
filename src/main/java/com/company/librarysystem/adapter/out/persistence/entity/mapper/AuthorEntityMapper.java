@@ -10,12 +10,12 @@ import java.util.List;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
-public class AuthorMapper {
+public class AuthorEntityMapper {
     public static Author toModel(@NonNull AuthorEntity entity) {
 
         List<Book> books = (entity.getBooks() == null) ? emptyList()
                 : entity.getBooks().stream()
-                .map(BookMapper::toModel)
+                .map(BookEntityMapper::toModel)
                 .collect(toList());
 
         return Author.builder()
@@ -37,7 +37,7 @@ public class AuthorMapper {
         if (model.getBooks() != null) {
 
             model.getBooks().stream()
-                    .map(BookMapper::toEntity)
+                    .map(BookEntityMapper::toEntity)
                     .forEach(entity::addBook);
         }
 

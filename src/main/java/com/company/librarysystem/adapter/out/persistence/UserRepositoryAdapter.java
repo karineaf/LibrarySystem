@@ -1,10 +1,8 @@
 package com.company.librarysystem.adapter.out.persistence;
 
-import com.company.librarysystem.adapter.out.persistence.entity.ReviewEntity;
 import com.company.librarysystem.adapter.out.persistence.entity.UserEntity;
-import com.company.librarysystem.adapter.out.persistence.entity.mapper.UserMapper;
+import com.company.librarysystem.adapter.out.persistence.entity.mapper.UserEntityMapper;
 import com.company.librarysystem.adapter.out.persistence.repository.UserRepositoryJpa;
-import com.company.librarysystem.domain.model.Review;
 import com.company.librarysystem.domain.model.User;
 import com.company.librarysystem.domain.port.out.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewMapper.toModel;
+import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewEntityMapper.toModel;
 
 @RequiredArgsConstructor
 public class UserRepositoryAdapter implements UserRepository {
@@ -24,14 +22,14 @@ public class UserRepositoryAdapter implements UserRepository {
 
     @Override
     public User save(User model) {
-        UserEntity entity = UserMapper.toEntity(model);
+        UserEntity entity = UserEntityMapper.toEntity(model);
         entity = repository.save(entity);
-        return UserMapper.toModel(entity);
+        return UserEntityMapper.toModel(entity);
     }
 
     @Override
     public Optional<User> findById(Long id) {
-        return repository.findById(id).map(UserMapper::toModel);
+        return repository.findById(id).map(UserEntityMapper::toModel);
     }
 
     @Override
@@ -49,23 +47,23 @@ public class UserRepositoryAdapter implements UserRepository {
 
     @Override
     public Optional<User> findByName(String name) {
-        return repository.findByName(name).map(UserMapper::toModel);
+        return repository.findByName(name).map(UserEntityMapper::toModel);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return repository.findByEmail(email).map(UserMapper::toModel);
+        return repository.findByEmail(email).map(UserEntityMapper::toModel);
     }
 
     @Override
     public Optional<User> findByTelephoneNumber(String telephoneNumber) {
-        return repository.findByTelephoneNumber(telephoneNumber).map(UserMapper::toModel);
+        return repository.findByTelephoneNumber(telephoneNumber).map(UserEntityMapper::toModel);
     }
 
     @Override
     public List<User> findByBirthDate(LocalDate birthDate) {
         return repository.findByBirthDate(birthDate).stream()
-                .map(UserMapper::toModel)
+                .map(UserEntityMapper::toModel)
                 .collect(Collectors.toList());
     }
 }

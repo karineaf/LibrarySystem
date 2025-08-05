@@ -1,7 +1,7 @@
 package com.company.librarysystem.adapter.out.persistence;
 
 import com.company.librarysystem.adapter.out.persistence.entity.ReviewEntity;
-import com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewMapper;
+import com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewEntityMapper;
 import com.company.librarysystem.adapter.out.persistence.repository.ReviewRepositoryJpa;
 import com.company.librarysystem.domain.model.Review;
 import com.company.librarysystem.domain.port.out.ReviewRepository;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewMapper.toModel;
+import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewEntityMapper.toModel;
 
 @RequiredArgsConstructor
 public class ReviewRepositoryAdapter implements ReviewRepository {
@@ -22,14 +22,14 @@ public class ReviewRepositoryAdapter implements ReviewRepository {
 
     @Override
     public Review save(Review review) {
-        ReviewEntity entity = ReviewMapper.toEntity(review);
+        ReviewEntity entity = ReviewEntityMapper.toEntity(review);
         entity = repository.save(entity);
         return toModel(entity);
     }
 
     @Override
     public Optional<Review> findById(Long id) {
-        return repository.findById(id).map(ReviewMapper::toModel);
+        return repository.findById(id).map(ReviewEntityMapper::toModel);
     }
 
     @Override
@@ -47,30 +47,30 @@ public class ReviewRepositoryAdapter implements ReviewRepository {
 
     @Override
     public Optional<Review> findByUserId(Long userId) {
-        return repository.findByUserId(userId).map(ReviewMapper::toModel);
+        return repository.findByUserId(userId).map(ReviewEntityMapper::toModel);
     }
 
     @Override
     public Optional<Review> findByBookId(Long bookId) {
-        return repository.findByBookId(bookId).map(ReviewMapper::toModel);
+        return repository.findByBookId(bookId).map(ReviewEntityMapper::toModel);
     }
 
     @Override
     public Optional<Review> findByBookTitle(String bookTitle) {
-        return repository.findByBook_Title(bookTitle).map(ReviewMapper::toModel);
+        return repository.findByBook_Title(bookTitle).map(ReviewEntityMapper::toModel);
     }
 
     @Override
     public List<Review> findByRating(Integer rating) {
         return repository.findByRating(rating).stream()
-                .map(ReviewMapper::toModel)
+                .map(ReviewEntityMapper::toModel)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Review> findByCreatedAt(LocalDate createdAt) {
         return repository.findByCreatedAt(createdAt).stream()
-                .map(ReviewMapper::toModel)
+                .map(ReviewEntityMapper::toModel)
                 .collect(Collectors.toList());
     }
 }

@@ -4,7 +4,7 @@ import com.company.librarysystem.domain.model.User;
 import com.company.librarysystem.adapter.out.persistence.entity.UserEntity;
 import lombok.NonNull;
 
-public class UserMapper {
+public class UserEntityMapper {
 
     public static User toModel(@NonNull UserEntity entity) {
         return User.builder()

@@ -4,14 +4,14 @@ import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.adapter.out.persistence.entity.ReservationEntity;
 import lombok.NonNull;
 
-public class ReservationMapper {
+public class ReservationEntityMapper {
 
     public static Reservation toModel(@NonNull ReservationEntity entity) {
 
         return Reservation.builder()
                 .id(entity.getId())
                 .userId(entity.getUserId())
-                .book(BookMapper.toModel(entity.getBook()))
+                .book(BookEntityMapper.toModel(entity.getBook()))
                 .startDate(entity.getStartDate())
                 .status(entity.getStatus())
                 .endDate(entity.getEndDate())
@@ -22,7 +22,7 @@ public class ReservationMapper {
         return ReservationEntity.builder()
                 .id(reservation.getId())
                 .userId(reservation.getUserId())
-                .book(BookMapper.toEntity(reservation.getBook()))
+                .book(BookEntityMapper.toEntity(reservation.getBook()))
                 .startDate(reservation.getStartDate())
                 .endDate(reservation.getEndDate())
                 .status(reservation.getStatus())
