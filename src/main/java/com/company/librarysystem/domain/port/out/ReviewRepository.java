@@ -1,9 +1,6 @@
 package com.company.librarysystem.domain.port.out;
 
-import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.model.Review;
-import com.company.librarysystem.domain.model.enums.ReservationStatus;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;

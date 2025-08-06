@@ -1,6 +1,5 @@
 package com.company.librarysystem.application.service;
 
-import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;

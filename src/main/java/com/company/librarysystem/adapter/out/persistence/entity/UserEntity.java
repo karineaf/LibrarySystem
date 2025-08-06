@@ -3,8 +3,6 @@ package com.company.librarysystem.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.time.LocalDate;
 
 import static lombok.AccessLevel.PROTECTED;

@@ -1,7 +1,6 @@
 package com.company.librarysystem.adapter.out.persistence.repository;
 
 import com.company.librarysystem.adapter.out.persistence.entity.AuthorEntity;
-import com.company.librarysystem.domain.model.Author;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

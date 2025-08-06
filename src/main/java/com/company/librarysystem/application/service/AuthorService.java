@@ -3,7 +3,6 @@ package com.company.librarysystem.application.service;
 import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

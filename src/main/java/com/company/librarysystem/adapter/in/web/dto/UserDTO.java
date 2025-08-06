@@ -1,6 +1,5 @@
 package com.company.librarysystem.adapter.in.web.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.time.LocalDate;
