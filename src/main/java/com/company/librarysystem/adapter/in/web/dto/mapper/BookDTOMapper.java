@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface BookDTOMapper {
-    @Mapping(target = "authorNames", expression = "java(book.getAuthors().stream().map(author -> author.getName()).collect(Collectors.toList()))")
+    @Mapping(target = "authors", expression = "java(book.getAuthors().stream().map(author -> author.getName()).collect(Collectors.toList()))")
     @Mapping(target = "genre", expression = "java(book.getGenre().name())")
     @Mapping(target = "targetAudience", expression = "java(book.getTargetAudience().name())")
     BookDTO toDto(Book book);
