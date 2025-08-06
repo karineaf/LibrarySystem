@@ -19,7 +19,7 @@ public class Review {
     private final String comment;
     private final LocalDate createdAt;
 
-    public Review(Long id, @NonNull Long userId, @NonNull Book book, @NonNull int rating, String comment,
+    public Review(Long id, @NonNull Long userId, @NonNull Book book, @NonNull Integer rating, String comment,
                   LocalDate createdAt) {
 
         if (rating < 1 || rating > 5)
