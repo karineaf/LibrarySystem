@@ -23,7 +23,7 @@ public class Reservation {
     private ReservationStatus status;
 
     public Reservation(Long id, @NonNull Long userId, @NonNull Book book,
-                       @NonNull LocalDate startDate, @NonNull LocalDate endDate) {
+                       @NonNull LocalDate startDate, @NonNull LocalDate endDate, ReservationStatus status) {
 
         if (isValidRange(startDate,endDate)) throw new IllegalArgumentException("End date cannot be before start date");
 
@@ -32,7 +32,7 @@ public class Reservation {
         this.book = book;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.status = ACTIVE;
+        this.status = (status != null) ? status : ACTIVE;
     }
 
     public boolean isActive() {

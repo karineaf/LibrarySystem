@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewEntityMapper.toModel;
+import static com.company.librarysystem.adapter.out.persistence.entity.mapper.UserEntityMapper.toModel;
 
 @RequiredArgsConstructor
 public class UserRepositoryAdapter implements UserRepository {
