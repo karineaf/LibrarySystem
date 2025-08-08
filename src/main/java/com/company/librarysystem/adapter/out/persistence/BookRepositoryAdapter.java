@@ -8,6 +8,9 @@ import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;
 import com.company.librarysystem.domain.port.out.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import static com.company.librarysystem.adapter.out.persistence.entity.mapper.Bo
 import static com.company.librarysystem.adapter.out.persistence.entity.mapper.BookEntityMapper.toModel;
 
 @RequiredArgsConstructor
+@Repository
 public class BookRepositoryAdapter implements BookRepository {
 
     private final BookRepositoryJpa repository;

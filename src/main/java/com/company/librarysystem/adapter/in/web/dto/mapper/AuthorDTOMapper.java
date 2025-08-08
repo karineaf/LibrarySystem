@@ -2,10 +2,11 @@ package com.company.librarysystem.adapter.in.web.dto.mapper;
 
 import com.company.librarysystem.adapter.in.web.dto.AuthorDTO;
 import com.company.librarysystem.domain.model.Author;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
-
+@Component
 public class AuthorDTOMapper {
 
     public static AuthorDTO toDTO(Author author) {

@@ -5,12 +5,14 @@ import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;
 import com.company.librarysystem.domain.port.out.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class BookService {
 
     private final BookRepository bookRepository;

@@ -6,6 +6,9 @@ import com.company.librarysystem.adapter.out.persistence.repository.UserReposito
 import com.company.librarysystem.domain.model.User;
 import com.company.librarysystem.domain.port.out.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 import static com.company.librarysystem.adapter.out.persistence.entity.mapper.UserEntityMapper.toModel;
 
 @RequiredArgsConstructor
+@Repository
 public class UserRepositoryAdapter implements UserRepository {
 
     private final UserRepositoryJpa repository;

@@ -6,6 +6,9 @@ import com.company.librarysystem.adapter.out.persistence.repository.ReviewReposi
 import com.company.librarysystem.domain.model.Review;
 import com.company.librarysystem.domain.port.out.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReviewEntityMapper.toModel;
 
 @RequiredArgsConstructor
+@Repository
 public class ReviewRepositoryAdapter implements ReviewRepository {
 
     private final ReviewRepositoryJpa repository;

@@ -7,6 +7,9 @@ import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.model.enums.ReservationStatus;
 import com.company.librarysystem.domain.port.out.ReservationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.Optional;
 import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReservationEntityMapper.*;
 
 @RequiredArgsConstructor
+@Repository
 public class ReservationRepositoryAdapter implements ReservationRepository {
 
     private final ReservationRepositoryJpa repository;

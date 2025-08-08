@@ -3,11 +3,13 @@ package com.company.librarysystem.application.service;
 import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.port.out.ReservationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;

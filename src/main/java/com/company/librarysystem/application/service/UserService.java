@@ -4,12 +4,14 @@ package com.company.librarysystem.application.service;
 import com.company.librarysystem.domain.model.User;
 import com.company.librarysystem.domain.port.out.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class UserService {
 
     private final UserRepository userRepository;

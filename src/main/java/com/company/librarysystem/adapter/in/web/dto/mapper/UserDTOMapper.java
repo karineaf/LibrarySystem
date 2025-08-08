@@ -2,7 +2,9 @@ package com.company.librarysystem.adapter.in.web.dto.mapper;
 
 import com.company.librarysystem.adapter.in.web.dto.UserDTO;
 import com.company.librarysystem.domain.model.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserDTOMapper {
     public UserDTO toDTO(User user) {
         if (user == null) return null;

@@ -3,12 +3,14 @@ package com.company.librarysystem.application.service;
 import com.company.librarysystem.domain.model.Review;
 import com.company.librarysystem.domain.port.out.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;

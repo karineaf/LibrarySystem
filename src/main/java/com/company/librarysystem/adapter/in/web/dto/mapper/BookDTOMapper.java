@@ -4,10 +4,11 @@ import com.company.librarysystem.adapter.in.web.dto.BookDTO;
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
-
+@Component
 public class BookDTOMapper {
     public static BookDTO toDTO(Book book) {
         if (book == null) return null;

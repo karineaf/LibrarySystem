@@ -6,6 +6,9 @@ import com.company.librarysystem.adapter.out.persistence.repository.AuthorReposi
 import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,7 @@ import static com.company.librarysystem.adapter.out.persistence.entity.mapper.Au
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
+@Repository
 public class AuthorRepositoryAdapter implements AuthorRepository {
 
     private final AuthorRepositoryJpa repository;
