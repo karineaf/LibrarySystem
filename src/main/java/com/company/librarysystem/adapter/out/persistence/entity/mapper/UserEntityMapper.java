@@ -3,7 +3,11 @@ package com.company.librarysystem.adapter.out.persistence.entity.mapper;
 import com.company.librarysystem.domain.model.User;
 import com.company.librarysystem.adapter.out.persistence.entity.UserEntity;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 public class UserEntityMapper {
 
     public static User toModel(@NonNull UserEntity entity) {

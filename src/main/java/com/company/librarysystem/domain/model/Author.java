@@ -14,28 +14,24 @@ import java.util.List;
 public class Author {
     private final Long id;
     private final String name;
-    @Getter
+    @Builder.Default
     private List<Book> books = new ArrayList<>();
 
-    public Author(Long id, @NonNull String name, @NonNull List<Book> books) {
+    public Author(Long id, @NonNull String name, List<Book> books) {
 
         this.id = id;
         this.name = name;
-        this.books.addAll(books);
+        this.books = (books != null) ? books : new ArrayList<>();
 
-        for (Book book : books) this.addBook(book);
     }
 
     public void addBook(Book book) {
-        if (book != null & !books.contains(book)) {
+        if (book != null && !books.contains(book)) {
             books.add(book);
-            book.addAuthor(this);
         }
     }
 
     public void removeBook(Book book) {
         books.remove(book);
-        book.removeAuthor(this);
     }
-
 }

@@ -20,18 +20,19 @@ import static org.springframework.http.ResponseEntity.ok;
 public class BookController {
 
     private final BookService service;
+    private final BookDTOMapper mapper;
 
     @PostMapping
     public ResponseEntity<BookDTO> create(@RequestBody BookDTO dto) {
-        Book book = BookDTOMapper.toModel(dto);
+        Book book = mapper.toModel(dto);
         Book saved = service.save(book);
-        return ok(BookDTOMapper.toDTO(saved));
+        return ok(mapper.toDTO(saved));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<BookDTO> findById(@PathVariable Long id) {
         return service.findById(id)
-                .map(BookDTOMapper::toDTO)
+                .map(mapper::toDTO)
                 .map(ResponseEntity::ok)
                 .orElse(notFound().build());
     }
@@ -40,7 +41,7 @@ public class BookController {
     public ResponseEntity<List<BookDTO>> findAll() {
         List<BookDTO> list = service.findAll()
                 .stream()
-                .map(BookDTOMapper::toDTO)
+                .map(mapper::toDTO)
                 .collect(toList());
         return ok(list);
     }
@@ -49,7 +50,7 @@ public class BookController {
     public ResponseEntity<List<BookDTO>> findByTitle(@PathVariable String title) {
         List<BookDTO> list = service.findByTitle(title)
                 .stream()
-                .map(BookDTOMapper::toDTO)
+                .map(mapper::toDTO)
                 .collect(toList());
         return ok(list);
     }

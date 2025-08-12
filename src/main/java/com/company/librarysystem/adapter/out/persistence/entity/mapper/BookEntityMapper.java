@@ -1,51 +1,71 @@
 package com.company.librarysystem.adapter.out.persistence.entity.mapper;
 
 import com.company.librarysystem.domain.model.Book;
-import com.company.librarysystem.domain.model.Author;
-import com.company.librarysystem.domain.model.enums.Genre;
-import com.company.librarysystem.domain.model.enums.TargetAudience;
 import com.company.librarysystem.adapter.out.persistence.entity.BookEntity;
-import lombok.NonNull;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
+@Component
 public class BookEntityMapper {
 
-    public static Book toModel(BookEntity entity) {
+    private final AuthorEntityMapper authorMapper;
+
+    public BookEntityMapper(@Lazy AuthorEntityMapper authorMapper) {
+        this.authorMapper = authorMapper;
+    }
+
+    public Book toModel(BookEntity entity) {
         if (entity == null) return null;
 
-        List<Author> authors = (entity.getAuthors() == null)
-                ? Collections.emptyList()
-                : entity.getAuthors().stream()
-                .map(AuthorEntityMapper::toModel)
-                .collect(Collectors.toList());
+        Book book = toModelWithoutAuthors(entity);
+
+        if (entity.getAuthors() != null && !entity.getAuthors().isEmpty())
+            entity.getAuthors()
+                    .forEach(authorEntity -> book.addAuthor(authorMapper.toModelWithoutBooks(authorEntity)));
+
+        return book;
+    }
+
+    public Book toModelWithoutAuthors(BookEntity entity) {
+        if (entity == null) return null;
 
         return Book.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
-                .authors(authors)
-                .description(entity.getDescription())
                 .pagesNumber(entity.getPagesNumber())
+                .description(entity.getDescription())
                 .releaseDate(entity.getReleaseDate())
-                .genre(entity.getGenre() != null ? entity.getGenre() : Genre.UNDEFINED)
-                .targetAudience(entity.getTargetAudience() != null ? entity.getTargetAudience() : TargetAudience.UNDEFINED)
+                .genre(entity.getGenre())
+                .targetAudience(entity.getTargetAudience())
+                .authors(new ArrayList<>())
                 .build();
     }
 
-    public static BookEntity toEntity(@NonNull Book model) {
+    // Model → Entity
+    public BookEntity toEntity(Book model) {
+        if (model == null) return null;
+
+        BookEntity entity = toEntityWithoutAuthors(model);
+
+        if (model.getAuthors() != null && !model.getAuthors().isEmpty())
+            model.getAuthors()
+                    .forEach(author -> entity.addAuthor(authorMapper.toEntityWithoutBooks(author)));
+
+        return entity;
+    }
+
+    public BookEntity toEntityWithoutAuthors(Book model) {
+        if (model == null) return null;
 
         return BookEntity.builder()
                 .id(model.getId())
                 .title(model.getTitle())
                 .description(model.getDescription())
-                .pagesNumber(model.getPagesNumber())
                 .releaseDate(model.getReleaseDate())
                 .genre(model.getGenre())
                 .targetAudience(model.getTargetAudience())
-                .build()
-                // Depois adiciona autores para manter a relação bidirecional
-                ;
+                .build();
     }
 }

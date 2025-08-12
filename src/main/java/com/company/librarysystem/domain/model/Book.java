@@ -17,6 +17,7 @@ import java.util.List;
 public class Book {
     private final Long id;
     private final String title;
+    @Builder.Default
     private List<Author> authors = new ArrayList<>();
     private final String description;
     private final Integer pagesNumber;
@@ -24,7 +25,7 @@ public class Book {
     private final Genre genre;
     private final TargetAudience targetAudience;
 
-    public Book(Long id, @NonNull String title, @NonNull List<Author> authors, String description,
+    public Book(Long id, @NonNull String title, List<Author> authors, String description,
                 @NonNull Integer pagesNumber, LocalDate releaseDate, Genre genre, TargetAudience targetAudience) {
 
         this.id = id;
@@ -34,15 +35,15 @@ public class Book {
         this.pagesNumber = pagesNumber;
         this.genre = (genre != null) ? genre : Genre.UNDEFINED;
         this.targetAudience = (targetAudience != null) ? targetAudience : TargetAudience.UNDEFINED;
-
-        for (Author author : authors) this.addAuthor(author);
+        this.authors = (authors != null && !authors.isEmpty()) ? authors: new ArrayList<>();
+        // for (Author author : authors) this.addAuthor(author):
 
     }
 
     public void addAuthor(Author author) {
-        if (author == null) {
+        if (author == null)
             throw new IllegalArgumentException("Author cannot be null");
-        }
+
         if (!authors.contains(author)) {
             authors.add(author);
             author.addBook(this);

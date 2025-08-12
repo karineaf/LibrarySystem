@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper.toEntity;
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper.toModel;
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
@@ -24,23 +22,24 @@ import static java.util.stream.Collectors.toList;
 public class AuthorRepositoryAdapter implements AuthorRepository {
 
     private final AuthorRepositoryJpa repository;
+    private final AuthorEntityMapper mapper;
 
     @Override
     public Author save(Author author) {
-        AuthorEntity entity = toEntity(author);
-        return toModel(repository.save(entity));
+        AuthorEntity entity = mapper.toEntity(author);
+        return mapper.toModel(repository.save(entity));
     }
 
     @Override
     public Optional<Author> findById(Long id) {
-        return repository.findById(id).map(AuthorEntityMapper::toModel);
+        return repository.findById(id).map(mapper::toModel);
     }
 
     @Override
     public List<Author> findAll() {
         List<Author> authors = new ArrayList<>();
         for (AuthorEntity entity : repository.findAll())
-            authors.add(toModel(entity));
+            authors.add(mapper.toModel(entity));
         return authors;
     }
 
@@ -51,20 +50,20 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
 
     @Override
     public Optional<Author> findByName(String name) {
-        return repository.findByName(name).map(AuthorEntityMapper::toModel);
+        return repository.findByName(name).map(mapper::toModel);
     }
 
     @Override
     public List<Author> findByBookId(Long bookId) {
         return repository.findByBooks_Id(bookId).stream()
-                .map(AuthorEntityMapper::toModel)
+                .map(mapper::toModel)
                 .collect(toList());
     }
 
     @Override
     public List<Author> findByBookTitle(String bookTitle) {
         return repository.findByBooks_Title(bookTitle).stream()
-                .map(AuthorEntityMapper::toModel)
+                .map(mapper::toModel)
                 .collect(toList());
     }
 

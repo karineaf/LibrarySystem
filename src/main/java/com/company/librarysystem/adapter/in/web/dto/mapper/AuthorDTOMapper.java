@@ -8,39 +8,54 @@ import java.util.stream.Collectors;
 
 @Component
 public class AuthorDTOMapper {
+    private final BookDTOMapper bookDTOMapper;
 
-    public static AuthorDTO toDTO(Author author) {
-        if (author == null)
-            return null;
+    public AuthorDTOMapper(BookDTOMapper bookDTOMapper) {
+        this.bookDTOMapper = bookDTOMapper;
+    }
+
+    public AuthorDTO toDTO(Author author) {
+        if (author == null) return null;
+
+        AuthorDTO authorDTO = toDTOWithoutBooks(author);
+
+        if (author.getBooks() != null && !author.getBooks().isEmpty())
+            authorDTO.setBooks(
+                    author.getBooks()
+                            .stream()
+                            .map(bookDTOMapper::toDTOWithoutAuthors)
+                            .collect(Collectors.toList())
+            );
+
+        return authorDTO;
+    }
+
+    public AuthorDTO toDTOWithoutBooks(Author author) {
+        if (author == null) return null;
 
         return AuthorDTO.builder()
                 .id(author.getId())
                 .name(author.getName())
-                .books(
-                        author.getBooks() != null
-                                ? author.getBooks().stream()
-                                .map(BookDTOMapper::toDTO)
-                                .collect(Collectors.toList())
-                                : null
-                )
                 .build();
     }
 
+    public Author toModel(AuthorDTO dto) {
+        if (dto == null) return null;
 
-    public static Author toModel(AuthorDTO dto) {
-        if (dto == null)
-            return null;
+        Author author = toModelWithoutBooks(dto);
+
+        if (dto.getBooks() != null && !dto.getBooks().isEmpty())
+            dto.getBooks() .forEach(bookDTO -> author.addBook(bookDTOMapper.toModelWithoutAuthors(bookDTO)));
+
+        return author;
+    }
+
+    public Author toModelWithoutBooks(AuthorDTO dto) {
+        if (dto == null) return null;
 
         return Author.builder()
                 .id(dto.getId())
                 .name(dto.getName())
-                .books(
-                        dto.getBooks() != null
-                                ? dto.getBooks().stream()
-                                .map(BookDTOMapper::toModel)
-                                .collect(Collectors.toList())
-                                : null
-                )
                 .build();
     }
 }

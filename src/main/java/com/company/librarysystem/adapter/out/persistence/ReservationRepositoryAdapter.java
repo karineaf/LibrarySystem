@@ -22,23 +22,25 @@ import static com.company.librarysystem.adapter.out.persistence.entity.mapper.Re
 public class ReservationRepositoryAdapter implements ReservationRepository {
 
     private final ReservationRepositoryJpa repository;
+    private final ReservationEntityMapper mapper;
 
     @Override
     public Reservation save(Reservation reservation) {
-        return toModel(repository.save(toEntity(reservation)));
+
+        return mapper.toModel(repository.save(mapper.toEntity(reservation)));
     }
 
     @Override
     public Optional<Reservation> findById(Long id) {
         return repository.findById(id)
-                .map(ReservationEntityMapper::toModel);
+                .map(mapper::toModel);
     }
 
     @Override
     public List<Reservation> findAll() {
         List<Reservation> reservations = new ArrayList<>();
         for (ReservationEntity entity : repository.findAll())
-            reservations.add(toModel(entity));
+            reservations.add(mapper.toModel(entity));
         return reservations;
     }
 
@@ -50,26 +52,26 @@ public class ReservationRepositoryAdapter implements ReservationRepository {
     @Override
     public Optional<Reservation> findByUserId(Long userId) {
         return repository.findByUserId(userId)
-                .map(ReservationEntityMapper::toModel);
+                .map(mapper::toModel);
     }
 
     @Override
     public Optional<Reservation> findByBookId(Long bookId) {
         return repository.findByBookId(bookId)
-                .map(ReservationEntityMapper::toModel);
+                .map(mapper::toModel);
     }
 
     @Override
     public Optional<Reservation> findByBookTitle(String bookTitle) {
         return repository.findByBook_Title(bookTitle)
-                .map(ReservationEntityMapper::toModel);
+                .map(mapper::toModel);
     }
 
     @Override
     public List<Reservation> findByStatus(ReservationStatus status) {
         List<Reservation> reservations = new ArrayList<>();
         for (var entity : repository.findByStatus(status)) {
-            reservations.add(toModel(entity));
+            reservations.add(mapper.toModel(entity));
         }
         return reservations;
     }
