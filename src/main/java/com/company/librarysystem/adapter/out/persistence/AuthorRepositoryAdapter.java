@@ -6,8 +6,6 @@ import com.company.librarysystem.adapter.out.persistence.repository.AuthorReposi
 import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -49,8 +47,8 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
     }
 
     @Override
-    public Optional<Author> findByName(String name) {
-        return repository.findByName(name).map(mapper::toModel);
+    public List<Author> findByName(String name) {
+        return repository.findByName(name).stream().map(mapper::toModel).collect(toList());
     }
 
     @Override

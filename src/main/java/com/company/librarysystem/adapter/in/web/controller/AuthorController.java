@@ -3,17 +3,15 @@ package com.company.librarysystem.adapter.in.web.controller;
 import com.company.librarysystem.adapter.in.web.dto.AuthorDTO;
 import com.company.librarysystem.adapter.in.web.dto.mapper.AuthorDTOMapper;
 import com.company.librarysystem.application.service.AuthorService;
-import com.company.librarysystem.domain.model.Author;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.ResponseEntity.notFound;
-import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.ResponseEntity.*;
 
 @RestController
 @RequestMapping("/api/authors")
@@ -25,10 +23,9 @@ public class AuthorController {
 
     @GetMapping
     public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
-        List<Author> authors = service.findAll();
-        List<AuthorDTO> dtoList = authors.stream()
+        List<AuthorDTO> dtoList = service.findAll().stream()
                 .map(mapper::toDTO)
-                .collect(Collectors.toList());
+                .collect(toList());
         return ok(dtoList);
     }
 
@@ -39,16 +36,48 @@ public class AuthorController {
                 .orElse(notFound().build());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<AuthorDTO>> getAuthorsByName(@RequestParam String name) {
+        List<AuthorDTO> authors = service.findByName(name)
+                .stream().map(mapper::toDTO).collect(toList());
+
+        if (authors.isEmpty())
+            return noContent().build();
+
+        return ok(authors);
+    }
+
+    @GetMapping("/search/by_book/{book_id}")
+    public ResponseEntity<List<AuthorDTO>> findByBookId(@PathVariable("book_id") Long bookId) {
+        List<AuthorDTO> authors = service.findByBookId(bookId)
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+
+        return ResponseEntity.ok(authors);
+    }
+
+    @GetMapping("/search/by_book_title")
+    public ResponseEntity<List<AuthorDTO>> findByBookTitle(@RequestParam("book_title") String bookTitle) {
+        List<AuthorDTO> authors = service.findByBookTitle(bookTitle)
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+
+        return ResponseEntity.ok(authors);
+    }
+
     @PostMapping
     public ResponseEntity<AuthorDTO> createAuthor(@RequestBody AuthorDTO dto) {
-        Author authorToSave = mapper.toModel(dto);
-        Author savedAuthor = service.create(authorToSave);
-        return new ResponseEntity<>(mapper.toDTO(savedAuthor), CREATED);
+        return new ResponseEntity<>(
+                mapper.toDTO(
+                        service.create(
+                                mapper.toModel(dto))), CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return noContent().build();
     }
 }

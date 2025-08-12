@@ -30,7 +30,7 @@ public class AuthorService {
         authorRepository.deleteById(id);
     }
 
-    public Optional<Author> findByName(String name) {
+    public List<Author> findByName(String name) {
         return authorRepository.findByName(name);
     }
 
