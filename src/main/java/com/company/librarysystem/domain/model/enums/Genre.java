@@ -1,5 +1,7 @@
 package com.company.librarysystem.domain.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Genre {
     FICTION,
     NONFICTION,
@@ -22,5 +24,10 @@ public enum Genre {
     BUSINESS,
     SPIRITUALITY,
     OTHER,
-    UNDEFINED
+    UNDEFINED;
+
+    @JsonCreator
+    public static Genre fromValue(String value) {
+        return Genre.valueOf(value.toUpperCase());
+    }
 }
