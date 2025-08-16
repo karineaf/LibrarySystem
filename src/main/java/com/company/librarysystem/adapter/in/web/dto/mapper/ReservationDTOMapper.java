@@ -29,7 +29,6 @@ public class ReservationDTOMapper {
         return Reservation.builder()
                 .id(dto.getId())
                 .userId(dto.getUserId())
-                //.book()
                 .startDate(dto.getStartDate())
                 .endDate(dto.getEndDate())
                 .status(valueOf(dto.getStatus()))
