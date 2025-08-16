@@ -1,9 +1,6 @@
 package com.company.librarysystem.domain.model;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -14,12 +11,13 @@ public class Review {
 
     private final Long id;
     private final Long userId;
-    private final Book book;
+    @Setter
+    private Book book;
     private final Integer rating;
     private final String comment;
     private final LocalDate createdAt;
 
-    public Review(Long id, @NonNull Long userId, @NonNull Book book, @NonNull Integer rating, String comment,
+    public Review(Long id, @NonNull Long userId, Book book, @NonNull Integer rating, String comment,
                   LocalDate createdAt) {
 
         if (rating < 1 || rating > 5)

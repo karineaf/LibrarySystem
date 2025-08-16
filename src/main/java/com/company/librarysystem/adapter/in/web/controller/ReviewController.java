@@ -1,5 +1,6 @@
 package com.company.librarysystem.adapter.in.web.controller;
 
+import com.company.librarysystem.adapter.in.web.dto.ReviewCreateDTO;
 import com.company.librarysystem.adapter.in.web.dto.ReviewDTO;
 import com.company.librarysystem.adapter.in.web.dto.mapper.ReviewDTOMapper;
 import com.company.librarysystem.application.service.ReviewService;
@@ -25,9 +26,8 @@ public class ReviewController {
     private final ReviewDTOMapper dtoMapper;
 
     @PostMapping
-    public ResponseEntity<ReviewDTO> create(@RequestBody ReviewDTO dto) {
-        Review review = dtoMapper.toModel(dto);
-        Review saved = service.saveReview(review);
+    public ResponseEntity<ReviewDTO> create(@RequestBody ReviewCreateDTO dto) {
+        Review saved = service.createReview(dto.getUserId(), dto.getBookId(), dto.getRating(), dto.getComment());
         return ok(dtoMapper.toDTO(saved));
     }
 
