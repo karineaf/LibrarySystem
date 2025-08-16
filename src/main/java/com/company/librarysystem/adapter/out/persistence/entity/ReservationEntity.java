@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static com.company.librarysystem.domain.model.enums.ReservationStatus.ACTIVE;
-import static com.company.librarysystem.domain.model.enums.ReservationStatus.CANCELLED;
+import static com.company.librarysystem.domain.model.enums.ReservationStatus.*;
+import static jakarta.persistence.EnumType.STRING;
 import static lombok.AccessLevel.PROTECTED;
 
 
@@ -39,7 +39,7 @@ public class ReservationEntity {
     @Column(nullable = false)
     private LocalDate endDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Column(nullable = false)
     private ReservationStatus status = ACTIVE;
 
@@ -47,9 +47,9 @@ public class ReservationEntity {
         return this.status == ACTIVE;
     }
 
-    public void cancel() {
-        if (!isActive()) throw new IllegalStateException("Only active reservations can be cancelled");
+    public void finish() {
+        if (!isActive()) throw new IllegalStateException("Only active reservations can be finished");
 
-        this.status = CANCELLED;
+        this.status = FINISHED;
     }
 }

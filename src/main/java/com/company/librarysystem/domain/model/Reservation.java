@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 import static com.company.librarysystem.domain.model.enums.ReservationStatus.*;
 import static com.company.librarysystem.util.DateUtils.isValidRange;
+import static java.time.LocalDate.now;
 
 @Getter
 @EqualsAndHashCode
@@ -19,13 +20,13 @@ public class Reservation {
     private final Long userId;
     private final Book book;
     private final LocalDate startDate;
-    private final LocalDate endDate;
+    private LocalDate endDate;
     private ReservationStatus status;
 
     public Reservation(Long id, @NonNull Long userId, @NonNull Book book,
                        @NonNull LocalDate startDate, @NonNull LocalDate endDate, ReservationStatus status) {
 
-        if (isValidRange(startDate,endDate)) throw new IllegalArgumentException("End date cannot be before start date");
+        if (!isValidRange(startDate,endDate)) throw new IllegalArgumentException("End date cannot be before start date");
 
         this.id = id;
         this.userId = userId;
@@ -39,22 +40,14 @@ public class Reservation {
         return status == ACTIVE;
     }
 
-    public void cancel() {
-        if (!isActive())
-            throw new IllegalStateException("Only active reservations can be cancelled");
-
-        this.status = CANCELLED;
-    }
-
     public void finish() {
         if (!isActive())
             throw new IllegalStateException("Only active reservations can be finished");
 
-        if (endDate.isAfter(LocalDate.now())) {
-            throw new IllegalStateException("Cannot finish a reservation before it ends");
-        }
         this.status = FINISHED;
+        this.endDate = now();
     }
+
 
 }
 

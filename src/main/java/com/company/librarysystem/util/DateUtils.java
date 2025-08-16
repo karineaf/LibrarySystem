@@ -11,7 +11,7 @@ public class DateUtils {
 
     public static boolean isValidRange(LocalDate start, LocalDate end) {
         if (start == null || end == null) return false;
-        return !end.isBefore(start);
+        return end.isEqual(start) || end.isAfter(start) ;
     }
 
     public static boolean isValidBirthDate(LocalDate birthDate) {

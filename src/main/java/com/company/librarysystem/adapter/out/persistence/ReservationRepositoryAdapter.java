@@ -7,15 +7,14 @@ import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.model.enums.ReservationStatus;
 import com.company.librarysystem.domain.port.out.ReservationRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.company.librarysystem.adapter.out.persistence.entity.mapper.ReservationEntityMapper.*;
+import static com.company.librarysystem.domain.model.enums.ReservationStatus.ACTIVE;
+import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
 @Repository
@@ -50,21 +49,19 @@ public class ReservationRepositoryAdapter implements ReservationRepository {
     }
 
     @Override
-    public Optional<Reservation> findByUserId(Long userId) {
+    public List<Reservation> findByUserId(Long userId) {
         return repository.findByUserId(userId)
-                .map(mapper::toModel);
+                .stream()
+                .map(mapper::toModel)
+                .toList();
     }
 
     @Override
-    public Optional<Reservation> findByBookId(Long bookId) {
+    public List<Reservation> findByBookId(Long bookId) {
         return repository.findByBookId(bookId)
-                .map(mapper::toModel);
-    }
-
-    @Override
-    public Optional<Reservation> findByBookTitle(String bookTitle) {
-        return repository.findByBook_Title(bookTitle)
-                .map(mapper::toModel);
+                .stream()
+                .map(mapper::toModel)
+                .toList();
     }
 
     @Override
@@ -74,6 +71,19 @@ public class ReservationRepositoryAdapter implements ReservationRepository {
             reservations.add(mapper.toModel(entity));
         }
         return reservations;
+    }
+
+    @Override
+    public boolean existsActiveReservationForBook(Long bookId) {
+        return repository.existsByBookIdAndStatus(bookId, ACTIVE);
+    }
+
+    @Override
+    public List<Reservation> findByUserIdAndBookIdOrderByStartDateDesc(Long userId, Long bookId) {
+        return repository.findByUserIdAndBookIdOrderByStartDateDesc(userId, bookId)
+                .stream()
+                .map(mapper::toModel)
+                .collect(toList());
     }
 }
 

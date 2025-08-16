@@ -25,8 +25,9 @@ public class ReservationEntityMapper {
     }
 
     public ReservationEntity toEntity(@NonNull Reservation reservation) {
+
         return ReservationEntity.builder()
-                .id(reservation.getId())
+                .id(reservation.getId() != null ? reservation.getId() : null)
                 .userId(reservation.getUserId())
                 .book(bookMapper.toEntity(reservation.getBook()))
                 .startDate(reservation.getStartDate())

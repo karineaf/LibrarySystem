@@ -8,15 +8,13 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class ReservationDTO {
-    private Long id;
+public class ReservationCreateDTO {
     @JsonProperty("user_id")
     private Long userId;
+
     @JsonProperty("book_id")
     private Long bookId;
-    @JsonProperty("start_date")
-    private LocalDate startDate;
-    @JsonProperty("end_date")
-    private LocalDate endDate;
-    private String status;
+
+    @JsonProperty("per_days")
+    private Integer perDays;
 }

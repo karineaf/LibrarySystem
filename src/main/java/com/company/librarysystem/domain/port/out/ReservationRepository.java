@@ -12,9 +12,10 @@ public interface ReservationRepository {
     List<Reservation> findAll();
     void deleteById(Long id);
 
-    Optional<Reservation> findByUserId(Long id);
-    Optional<Reservation> findByBookId(Long id);
-    Optional<Reservation> findByBookTitle(String bookTitle);
+    List<Reservation> findByUserId(Long id);
+    List<Reservation> findByBookId(Long id);
     List<Reservation> findByStatus(ReservationStatus status);
+    List<Reservation> findByUserIdAndBookIdOrderByStartDateDesc(Long userId, Long bookId);
+    boolean existsActiveReservationForBook(Long bookId);
 
 }
