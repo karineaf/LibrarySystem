@@ -1,7 +1,6 @@
 package com.company.librarysystem.application.service;
 
-import com.company.librarysystem.adapter.in.web.dto.ReservationCreateDTO;
-import com.company.librarysystem.domain.model.Author;
+
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.model.enums.ReservationStatus;
@@ -10,7 +9,6 @@ import com.company.librarysystem.domain.port.out.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 

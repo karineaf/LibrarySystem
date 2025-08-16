@@ -78,7 +78,7 @@ public class AuthorController {
     // #TODO - FIX BUG - DELETING OTHER AUTHORS IN THE SAME BOOK
     // @DeleteMapping("/{id}")
     // public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
-    //     service.delete(id);
+    //     service.deleteById(id);
     //     return noContent().build();
     // }
 }

@@ -47,12 +47,6 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
     }
 
     @Override
-    public void delete(Author author) {
-        AuthorEntity authorEntity = mapper.toEntity(author);
-        repository.delete(authorEntity);
-    }
-
-    @Override
     public List<Author> findByName(String name) {
         return repository.findByName(name).stream().map(mapper::toModel).collect(toList());
     }

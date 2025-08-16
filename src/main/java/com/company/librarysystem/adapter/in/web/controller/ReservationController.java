@@ -1,11 +1,9 @@
 package com.company.librarysystem.adapter.in.web.controller;
 
-import com.company.librarysystem.adapter.in.web.dto.AuthorDTO;
 import com.company.librarysystem.adapter.in.web.dto.ReservationCreateDTO;
 import com.company.librarysystem.adapter.in.web.dto.ReservationDTO;
 import com.company.librarysystem.adapter.in.web.dto.mapper.ReservationDTOMapper;
 import com.company.librarysystem.application.service.ReservationService;
-import com.company.librarysystem.domain.model.Reservation;
 import com.company.librarysystem.domain.model.enums.ReservationStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
