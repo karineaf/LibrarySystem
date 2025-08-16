@@ -40,6 +40,7 @@ public class BookDTOMapper {
                 .id(book.getId())
                 .title(book.getTitle())
                 .description(book.getDescription())
+                .pagesNumber(book.getPagesNumber())
                 .releaseDate(book.getReleaseDate())
                 .genre(book.getGenre().name())
                 .targetAudience(book.getTargetAudience().name())

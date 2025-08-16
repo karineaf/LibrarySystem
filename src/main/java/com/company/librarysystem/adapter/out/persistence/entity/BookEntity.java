@@ -56,7 +56,7 @@ public class BookEntity {
 
 
     public void addAuthor(AuthorEntity authorEntity) {
-        if (authors.stream().noneMatch(a -> a.getId().equals(authorEntity.getId()))) {
+        if (authors != null && authors.stream().noneMatch(a -> a.getId().equals(authorEntity.getId()))) {
             authors.add(authorEntity);
             authorEntity.getBooks().add(this);
         }

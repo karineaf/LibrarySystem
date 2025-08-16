@@ -22,7 +22,7 @@ public class AuthorController {
     private final AuthorDTOMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
+    public ResponseEntity<List<AuthorDTO>> findAllAuthors() {
         List<AuthorDTO> dtoList = service.findAll().stream()
                 .map(mapper::toDTO)
                 .collect(toList());
@@ -30,14 +30,14 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable Long id) {
+    public ResponseEntity<AuthorDTO> findAuthorById(@PathVariable Long id) {
         return service.findById(id)
                 .map(author -> ok(mapper.toDTO(author)))
                 .orElse(notFound().build());
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<AuthorDTO>> getAuthorsByName(@RequestParam String name) {
+    public ResponseEntity<List<AuthorDTO>> findAuthorsByName(@RequestParam String name) {
         List<AuthorDTO> authors = service.findByName(name)
                 .stream().map(mapper::toDTO).collect(toList());
 

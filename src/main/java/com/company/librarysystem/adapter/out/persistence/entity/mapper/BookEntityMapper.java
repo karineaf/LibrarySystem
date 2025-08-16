@@ -42,8 +42,6 @@ public class BookEntityMapper {
                 .authors(new ArrayList<>())
                 .build();
     }
-
-    // Model → Entity
     public BookEntity toEntity(Book model) {
         if (model == null) return null;
 
@@ -63,6 +61,7 @@ public class BookEntityMapper {
                 .id(model.getId())
                 .title(model.getTitle())
                 .description(model.getDescription())
+                .pagesNumber(model.getPagesNumber())
                 .releaseDate(model.getReleaseDate())
                 .genre(model.getGenre())
                 .targetAudience(model.getTargetAudience())
