@@ -13,7 +13,7 @@ import static com.company.librarysystem.util.DateUtils.isValidBirthDate;
 @EqualsAndHashCode
 @Builder
 public class User {
-    private final Long id;
+    private Long id;
     private String name;
     private String email;
     private String telephoneNumber;

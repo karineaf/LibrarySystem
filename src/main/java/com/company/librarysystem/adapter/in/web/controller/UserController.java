@@ -26,8 +26,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDTO> create(@RequestBody UserDTO dto) {
-        User user = dtoMapper.toModel(dto);
-        User saved = service.saveUser(user);
+        User saved = service.saveUser(dtoMapper.toModel(dto));
         return ok(dtoMapper.toDTO(saved));
     }
 

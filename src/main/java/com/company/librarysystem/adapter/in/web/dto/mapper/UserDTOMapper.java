@@ -23,7 +23,7 @@ public class UserDTOMapper {
         if (dto == null) return null;
 
         return User.builder()
-                .id(dto.getId())
+                .id(dto.getId() != null ? dto.getId() : null)
                 .name(dto.getName())
                 .email(dto.getEmail())
                 .telephoneNumber(dto.getTelephoneNumber())
