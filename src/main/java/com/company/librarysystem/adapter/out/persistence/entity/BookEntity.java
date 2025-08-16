@@ -55,10 +55,10 @@ public class BookEntity {
     private List<AuthorEntity> authors = new ArrayList<>();
 
 
-    public void addAuthor(AuthorEntity author) {
-        if (author != null && !authors.contains(author)) {
-            authors.add(author);
-            author.getBooks().add(this);
+    public void addAuthor(AuthorEntity authorEntity) {
+        if (authors.stream().noneMatch(a -> a.getId().equals(authorEntity.getId()))) {
+            authors.add(authorEntity);
+            authorEntity.getBooks().add(this);
         }
     }
 

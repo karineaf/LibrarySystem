@@ -36,18 +36,15 @@ public class Book {
         this.genre = (genre != null) ? genre : Genre.UNDEFINED;
         this.targetAudience = (targetAudience != null) ? targetAudience : TargetAudience.UNDEFINED;
         this.authors = (authors != null && !authors.isEmpty()) ? authors: new ArrayList<>();
-        // for (Author author : authors) this.addAuthor(author):
-
     }
 
     public void addAuthor(Author author) {
         if (author == null)
             throw new IllegalArgumentException("Author cannot be null");
 
-        if (!authors.contains(author)) {
-            authors.add(author);
-            author.addBook(this);
-        }
+        if (this.authors.stream().noneMatch(bookAuthor -> bookAuthor.getId().equals(author.getId())))
+            this.authors.add(author);
+
     }
 
     public void removeAuthor(Author author) {

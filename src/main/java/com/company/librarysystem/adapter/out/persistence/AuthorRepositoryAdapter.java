@@ -1,9 +1,11 @@
 package com.company.librarysystem.adapter.out.persistence;
 
 import com.company.librarysystem.adapter.out.persistence.entity.AuthorEntity;
+import com.company.librarysystem.adapter.out.persistence.entity.BookEntity;
 import com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper;
 import com.company.librarysystem.adapter.out.persistence.repository.AuthorRepositoryJpa;
 import com.company.librarysystem.domain.model.Author;
+import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -47,6 +49,12 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
     }
 
     @Override
+    public void delete(Author author) {
+        AuthorEntity authorEntity = mapper.toEntity(author);
+        repository.delete(authorEntity);
+    }
+
+    @Override
     public List<Author> findByName(String name) {
         return repository.findByName(name).stream().map(mapper::toModel).collect(toList());
     }
@@ -54,7 +62,7 @@ public class AuthorRepositoryAdapter implements AuthorRepository {
     @Override
     public List<Author> findByBookId(Long bookId) {
         return repository.findByBooks_Id(bookId).stream()
-                .map(mapper::toModel)
+                .map(mapper::toModelWithoutBooks)
                 .collect(toList());
     }
 

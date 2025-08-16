@@ -75,9 +75,10 @@ public class AuthorController {
                                 mapper.toModel(dto))), CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
-        service.delete(id);
-        return noContent().build();
-    }
+    // #TODO - FIX BUG - DELETING OTHER AUTHORS IN THE SAME BOOK
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
+    //     service.delete(id);
+    //     return noContent().build();
+    // }
 }

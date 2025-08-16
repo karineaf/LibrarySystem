@@ -1,10 +1,15 @@
 package com.company.librarysystem.application.service;
 
 import com.company.librarysystem.domain.model.Author;
+import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
+import com.company.librarysystem.domain.port.out.BookRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +18,7 @@ import java.util.Optional;
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
 
     public Author create(Author author) {
         return authorRepository.save(author);
@@ -26,8 +32,24 @@ public class AuthorService {
         return authorRepository.findAll();
     }
 
+    @Transactional
     public void delete(Long id) {
-        authorRepository.deleteById(id);
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Author not found"));
+
+        List<Book> booksToCheck = bookRepository.findByAuthor_Id(id);
+
+        for (Book book : booksToCheck) {
+            book.removeAuthor(author);
+
+            if (book.getAuthors().isEmpty())
+                bookRepository.deleteById(book.getId());
+            else
+                bookRepository.save(book);
+        }
+
+        author.getBooks().clear();
+        authorRepository.deleteById(author.getId());
     }
 
     public List<Author> findByName(String name) {

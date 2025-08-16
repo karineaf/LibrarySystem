@@ -49,7 +49,7 @@ public class BookService {
     }
 
     public List<Book> findByAuthors(Long authorId) {
-        return bookRepository.findByAuthorId(authorId);
+        return bookRepository.findByAuthor_Id(authorId);
     }
 
     public void deleteById(Long id) {

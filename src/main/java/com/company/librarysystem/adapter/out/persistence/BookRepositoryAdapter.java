@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 
 @RequiredArgsConstructor
 @Repository
@@ -52,33 +54,40 @@ public class BookRepositoryAdapter implements BookRepository {
     public List<Book> findByReleaseDate(LocalDate releaseDate) {
         return repository.findByReleaseDate(releaseDate).stream()
                 .map(mapper::toModel)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
     public List<Book> findByGenre(Genre genre) {
         return repository.findByGenre(genre).stream()
                 .map(mapper::toModel)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
     public List<Book> findByTargetAudience(TargetAudience targetAudience) {
         return repository.findByTargetAudience(targetAudience).stream()
                 .map(mapper::toModel)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
-    public List<Book> findByAuthorId(Long authorId) {
+    public List<Book> findByAuthor_Id(Long authorId) {
         return repository.findByAuthors_Id(authorId).stream()
                 .map(mapper::toModel)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
+    }
+
+
+    @Override
+    public void delete(Book book) {
+        BookEntity bookEntity = mapper.toEntity(book);
+        repository.delete(bookEntity);
     }
 }
 
