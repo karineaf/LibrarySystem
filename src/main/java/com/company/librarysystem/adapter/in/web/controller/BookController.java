@@ -50,7 +50,7 @@ public class BookController {
         return ok(list);
     }
 
-    @GetMapping("/title/{title}")
+    @GetMapping("/search/by_title/{title}")
     public ResponseEntity<List<BookDTO>> findByTitle(@PathVariable String title) {
         List<BookDTO> list = service.findByTitle(title)
                 .stream()
@@ -59,7 +59,7 @@ public class BookController {
         return ok(list);
     }
 
-    @GetMapping("/release_date/{releaseDate}")
+    @GetMapping("/search/by_release_date/{releaseDate}")
     public ResponseEntity<List<BookDTO>> findByReleaseDate(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate releaseDate) {
         List<BookDTO> list = service.findByReleaseDate(releaseDate)
@@ -69,7 +69,7 @@ public class BookController {
         return ok(list);
     }
 
-    @GetMapping("/genre/{genre}")
+    @GetMapping("/search/by_genre/{genre}")
     public ResponseEntity<List<BookDTO>> findByGenre(@PathVariable String genre) {
         List<BookDTO> list = service.findByGenre(Genre.fromValue(genre))
                 .stream()
@@ -78,7 +78,7 @@ public class BookController {
         return ok(list);
     }
 
-    @GetMapping("/target_audience/{targetAudience}")
+    @GetMapping("/search/by_target_audience/{targetAudience}")
     public ResponseEntity<List<BookDTO>> findByTargetAudience(@PathVariable String targetAudience) {
         List<BookDTO> list = service.findByTargetAudience(TargetAudience.fromValue(targetAudience))
                 .stream()
