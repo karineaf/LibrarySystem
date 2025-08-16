@@ -16,9 +16,10 @@ public interface ReservationRepositoryJpa extends CrudRepository<ReservationEnti
     List<ReservationEntity> findByStatus(ReservationStatus status);
     List<ReservationEntity> findByUserIdAndBookIdOrderByStartDateDesc(Long userId, Long bookId);
 
-    @Query("SELECT CASE WHEN COUNT(r) > 0 THEN TRUE ELSE FALSE END " +
-            "FROM ReservationEntity r " +
-            "WHERE r.book.id = :bookId AND r.status = :status")
+    @Query("""
+            SELECT CASE WHEN COUNT(r) > 0 THEN TRUE ELSE FALSE END
+            FROM ReservationEntity r
+            WHERE r.book.id = :bookId AND r.status = :status""")
     boolean existsByBookIdAndStatus(Long bookId, ReservationStatus status);
 
 }
