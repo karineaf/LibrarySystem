@@ -13,7 +13,6 @@ public interface BookRepository {
     Optional<Book> findById(Long id);
     List<Book> findAll();
     void deleteById(Long id);
-    void delete(Book book);
 
     Optional<Book> findByTitle(String title);
     List<Book> findByReleaseDate(LocalDate releaseDate);

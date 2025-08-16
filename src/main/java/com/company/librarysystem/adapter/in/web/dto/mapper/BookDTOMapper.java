@@ -4,11 +4,9 @@ import com.company.librarysystem.adapter.in.web.dto.BookDTO;
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Component

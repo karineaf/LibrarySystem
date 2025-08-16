@@ -1,11 +1,9 @@
 package com.company.librarysystem.adapter.out.persistence;
 
 import com.company.librarysystem.adapter.out.persistence.entity.AuthorEntity;
-import com.company.librarysystem.adapter.out.persistence.entity.BookEntity;
 import com.company.librarysystem.adapter.out.persistence.entity.mapper.AuthorEntityMapper;
 import com.company.librarysystem.adapter.out.persistence.repository.AuthorRepositoryJpa;
 import com.company.librarysystem.domain.model.Author;
-import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.port.out.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.company.librarysystem.domain.model.enums.Genre.valueOf;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.ResponseEntity.notFound;
 import static org.springframework.http.ResponseEntity.ok;

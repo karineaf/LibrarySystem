@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -83,11 +82,5 @@ public class BookRepositoryAdapter implements BookRepository {
         repository.deleteById(id);
     }
 
-
-    @Override
-    public void delete(Book book) {
-        BookEntity bookEntity = mapper.toEntity(book);
-        repository.delete(bookEntity);
-    }
 }
 

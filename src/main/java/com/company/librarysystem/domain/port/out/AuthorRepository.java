@@ -10,7 +10,6 @@ public interface AuthorRepository {
     Optional<Author> findById(Long id);
     List<Author> findAll();
     void deleteById(Long id);
-    void delete(Author author);
 
     List<Author> findByName(String name);
     List<Author> findByBookId(Long bookId);
