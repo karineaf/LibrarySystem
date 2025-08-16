@@ -8,9 +8,11 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Data
 @Builder
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(NON_NULL)
 public class BookDTO {
     private Long id;
     private String title;
