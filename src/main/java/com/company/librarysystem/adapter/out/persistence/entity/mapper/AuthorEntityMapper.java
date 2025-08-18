@@ -5,6 +5,9 @@ import com.company.librarysystem.adapter.out.persistence.entity.AuthorEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class AuthorEntityMapper {
@@ -49,6 +52,7 @@ public class AuthorEntityMapper {
         return AuthorEntity.builder()
                 .id(model.getId())
                 .name(model.getName())
+                .books(new ArrayList<>())
                 .build();
     }
 }

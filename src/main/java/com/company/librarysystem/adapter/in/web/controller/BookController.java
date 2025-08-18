@@ -1,5 +1,6 @@
 package com.company.librarysystem.adapter.in.web.controller;
 
+import com.company.librarysystem.adapter.in.web.dto.BookCreateDTO;
 import com.company.librarysystem.adapter.in.web.dto.BookDTO;
 import com.company.librarysystem.adapter.in.web.dto.mapper.BookDTOMapper;
 import com.company.librarysystem.application.service.BookService;
@@ -27,9 +28,8 @@ public class BookController {
     private final BookDTOMapper mapper;
 
     @PostMapping
-    public ResponseEntity<BookDTO> create(@RequestBody BookDTO dto) {
-        Book book = mapper.toModel(dto);
-        Book saved = service.save(book);
+    public ResponseEntity<BookDTO> create(@RequestBody BookCreateDTO dto) {
+        Book saved = service.save(mapper.toModel(dto), dto.getAuthorIds());
         return ok(mapper.toDTO(saved));
     }
 

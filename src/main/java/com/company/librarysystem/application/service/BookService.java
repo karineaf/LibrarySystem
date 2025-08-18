@@ -1,11 +1,14 @@
 package com.company.librarysystem.application.service;
 
+import com.company.librarysystem.domain.model.Author;
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.enums.Genre;
 import com.company.librarysystem.domain.model.enums.TargetAudience;
+import com.company.librarysystem.domain.port.out.AuthorRepository;
 import com.company.librarysystem.domain.port.out.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,11 +16,19 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
 
-    public Book save(Book book) {
+    public Book save(Book book, List<Long> authorsIds) {
+        if (authorsIds != null && !authorsIds.isEmpty())
+            authorsIds.forEach(authorId ->{
+                Author author = authorRepository.findById(authorId)
+                        .orElseThrow(() -> new IllegalArgumentException("Author not found: " + authorId));
+                book.addAuthor(author);
+            });
         return bookRepository.save(book);
     }
 

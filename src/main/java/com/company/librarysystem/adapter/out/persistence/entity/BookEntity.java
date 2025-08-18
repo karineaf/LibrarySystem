@@ -46,7 +46,7 @@ public class BookEntity {
     @Column(nullable = false)
     private TargetAudience targetAudience;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "author_book",
             joinColumns = @JoinColumn(name = "book_id"),
@@ -56,8 +56,15 @@ public class BookEntity {
 
 
     public void addAuthor(AuthorEntity authorEntity) {
-        if (authors != null && authors.stream().noneMatch(a -> a.getId().equals(authorEntity.getId()))) {
-            authors.add(authorEntity);
+        if (authorEntity == null)
+            throw new IllegalArgumentException("AuthorEntity cannot be null");
+
+        boolean alreadyExists = this.authors.stream()
+                .anyMatch(a -> a.getId().equals(authorEntity.getId()));
+
+        if (!alreadyExists) {
+            this.authors.add(authorEntity);
+
             authorEntity.getBooks().add(this);
         }
     }

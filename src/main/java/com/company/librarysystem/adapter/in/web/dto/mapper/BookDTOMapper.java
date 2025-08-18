@@ -1,5 +1,6 @@
 package com.company.librarysystem.adapter.in.web.dto.mapper;
 
+import com.company.librarysystem.adapter.in.web.dto.BookCreateDTO;
 import com.company.librarysystem.adapter.in.web.dto.BookDTO;
 import com.company.librarysystem.domain.model.Book;
 import com.company.librarysystem.domain.model.enums.Genre;
@@ -63,6 +64,20 @@ public class BookDTOMapper {
                 .id(dto.getId())
                 .title(dto.getTitle())
                 .description(dto.getDescription())
+                .releaseDate(dto.getReleaseDate())
+                .genre(Genre.valueOf(dto.getGenre()))
+                .targetAudience(TargetAudience.valueOf(dto.getTargetAudience()))
+                .build();
+    }
+
+
+    public Book toModel(BookCreateDTO dto) {
+        if (dto == null) return null;
+
+        return Book.builder()
+                .title(dto.getTitle())
+                .description(dto.getDescription())
+                .pagesNumber(dto.getPagesNumber())
                 .releaseDate(dto.getReleaseDate())
                 .genre(Genre.valueOf(dto.getGenre()))
                 .targetAudience(TargetAudience.valueOf(dto.getTargetAudience()))

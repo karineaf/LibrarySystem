@@ -21,7 +21,7 @@ public class Author {
 
         this.id = id;
         this.name = name;
-        this.books = (books != null) ? books : new ArrayList<>();
+        this.books = (books != null && !books.isEmpty()) ? books : new ArrayList<>();
 
     }
 

@@ -26,7 +26,7 @@ public class AuthorEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "authors", cascade = {PERSIST, MERGE})
+    @ManyToMany(mappedBy = "authors", cascade = {MERGE})
     private List<BookEntity> books = new ArrayList<>();
 
     public void addBook(@NonNull BookEntity book) {

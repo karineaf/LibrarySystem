@@ -45,6 +45,9 @@ public class Book {
         if (this.authors.stream().noneMatch(bookAuthor -> bookAuthor.getId().equals(author.getId())))
             this.authors.add(author);
 
+        if (!author.getBooks().contains(this))
+            author.getBooks().add(this);
+
     }
 
     public void removeAuthor(Author author) {

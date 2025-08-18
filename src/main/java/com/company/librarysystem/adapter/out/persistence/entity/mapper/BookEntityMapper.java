@@ -65,6 +65,7 @@ public class BookEntityMapper {
                 .releaseDate(model.getReleaseDate())
                 .genre(model.getGenre())
                 .targetAudience(model.getTargetAudience())
+                .authors(new ArrayList<>())
                 .build();
     }
 }
