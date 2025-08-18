@@ -23,6 +23,7 @@ public enum Genre {
     SELF_HELP,
     BUSINESS,
     SPIRITUALITY,
+    TECHNICAL,
     OTHER,
     UNDEFINED;
 
