@@ -40,7 +40,7 @@ mvn clean install
 * Actuator Health Check:
 
   ```
-  http://localhost:8081/actuator/health
+  http://localhost:8080/actuator/health
   ```
 * Swagger UI:
 
@@ -80,3 +80,56 @@ mvn clean install
 
 * **IDE**: IntelliJ IDEA
 * **Build tool**: Maven
+
+---
+## 📌 Usage Examples
+
+* Create an Author: POST /api/authors
+  ```
+  {
+    "name": "Elayne Baeta"
+  }
+  ```
+
+
+* Create a Book: POST /api/books
+  ```
+  {
+    "title": "Clean Code",
+    "description": "A handbook of agile software craftsmanship",
+    "pages_number": 464,
+    "release_date": "2008-08-11",
+    "genre": "OTHER",
+    "target_audience": "ADULT",
+    "authors_ids": [1000]
+  }
+  ```
+  
+* Create a Reservation: POST /api/reservations
+  ```
+  {
+    "user_id": 1234,
+    "book_id": 2000,
+    "per_days": 30
+  }
+  ```
+
+* Create a Review: POST /api/reviews
+  ```
+  {
+    "user_id": 1234,
+    "book_id": 2000,
+    "rating": 5,
+    "comment": "I love it"
+  }
+  ```
+* Create an User: POST /api/user
+  ```
+  {
+    "name": "Willian Mark",
+    "email": "willian@example.com",
+    "telephoneNumber": "4567654321",
+    "address": "Street ABC, 57",
+    "birthDate": "2002-02-01"
+  }
+  ```
